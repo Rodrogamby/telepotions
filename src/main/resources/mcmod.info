@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "telepotion",
+    "name": "Telepotion",
+    "description": "Teleportation potions, as the creative name says.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "Rodro"
+    ],
+    "credits": "Everyone at Forge and its collaborators.",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
