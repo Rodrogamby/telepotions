@@ -1,1 +1,3 @@
 item.recall_potion.name=Recall Potion
+item.recall_potion.lore=Drinking this potion will take you home.
+item.recall_potion.error=Your bed no longer exists!
