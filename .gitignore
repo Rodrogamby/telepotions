@@ -1,6 +1,8 @@
 # User-specific stuff
 .idea/
 
+/SetReady.sh
+
 *.iml
 *.ipr
 *.iws
