@@ -1,6 +1,8 @@
 package com.califralia.telepotion.items;
 
 import com.califralia.telepotion.Telepotion;
+import com.califralia.telepotion.util.TpUtil;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,10 +11,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.translation.I18n;
@@ -58,10 +57,9 @@ public class RecallPotion extends ItemFood
         @Nullable BlockPos bedLoc = getBedLocation(playerIn);
         if(!worldIn.isRemote)
         {
-            if(bedLoc != null && playerIn.canEat(true))
+            if(bedLoc != null)
             {
                 playerIn.setActiveHand(handIn);
-                playerIn.sendMessage(new TextComponentString("Your bed: " + bedLoc));
                 return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
             }
         }
@@ -84,12 +82,17 @@ public class RecallPotion extends ItemFood
                 @Nullable BlockPos bedLoc = getBedLocation(entityplayer);
                 if(bedLoc != null)
                 {
-                    entityLiving.setPositionAndUpdate(bedLoc.getX(), bedLoc.getY(), bedLoc.getZ());
+                    final IBlockState bedBlock = worldIn.getBlockState(bedLoc);
+                    if(bedBlock.getBlock().isBed(bedBlock, worldIn, bedLoc, null))
+                    {
+                        final EnumFacing rotation = bedBlock.getBlock().getBedDirection(bedBlock, worldIn, bedLoc);
+                        if(TpUtil.bedTeleport(entityLiving, bedLoc.getX(), bedLoc.getY(), bedLoc.getZ(), rotation))
+                        {
+                            return super.onItemUseFinish(stack, worldIn, entityLiving);
+                        }
+                    }
                 }
-                else
-                {
-                    entityplayer.sendMessage(new TextComponentString(I18n.translateToLocalFormatted("item.recall_potion.error")));
-                }
+                entityplayer.sendMessage(new TextComponentString(I18n.translateToLocalFormatted("item.recall_potion.error")));
             }
         }
         return super.onItemUseFinish(stack, worldIn, entityLiving);
