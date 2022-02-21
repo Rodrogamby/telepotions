@@ -2,6 +2,7 @@
 .idea/
 
 /SetReady.sh
+/Distribute.sh
 
 *.iml
 *.ipr
