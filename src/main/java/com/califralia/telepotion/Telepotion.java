@@ -1,18 +1,14 @@
 package com.califralia.telepotion;
 
 import com.califralia.telepotion.items.RecallPotion;
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.event.RegistryEvent;
+import com.califralia.telepotion.items.WormholePotion;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.Logger;
 
 @Mod(
         modid = Telepotion.MOD_ID,
@@ -29,6 +25,7 @@ public class Telepotion
     @Mod.Instance(MOD_ID)
     public static Telepotion INSTANCE;
 
+    public static Logger logger;
     /**
      * This is the first initialization event. Register tile entities here.
      * The registry events below will have fired prior to entry to this method.
@@ -36,7 +33,8 @@ public class Telepotion
     @Mod.EventHandler
     public void preinit(FMLPreInitializationEvent event)
     {
-
+        logger = event.getModLog();
+        logger.log(Level.INFO, "FMLPreInit event");
     }
 
     /**
@@ -45,7 +43,7 @@ public class Telepotion
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-
+        logger.log(Level.INFO, "FMLInit event");
     }
 
     /**
@@ -54,7 +52,7 @@ public class Telepotion
     @Mod.EventHandler
     public void postinit(FMLPostInitializationEvent event)
     {
-
+        logger.log(Level.INFO, "FMLPostInit event");
     }
 
     @GameRegistry.ObjectHolder(MOD_ID)
@@ -67,6 +65,7 @@ public class Telepotion
     public static class Items
     {
           public static final RecallPotion recallPotion = null;
+          public static final WormholePotion wormholePotion = null;
     }
 
 }
