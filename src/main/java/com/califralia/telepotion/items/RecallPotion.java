@@ -1,7 +1,9 @@
 package com.califralia.telepotion.items;
 
 import com.califralia.telepotion.Telepotion;
+import com.califralia.telepotion.util.SoundUtil;
 import com.califralia.telepotion.util.TpUtil;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -55,13 +57,10 @@ public class RecallPotion extends ItemFood
     {
         ItemStack itemStack = playerIn.getHeldItem(handIn);
         @Nullable BlockPos bedLoc = getBedLocation(playerIn);
-        if(!worldIn.isRemote)
+        if(!worldIn.isRemote && bedLoc != null)
         {
-            if(bedLoc != null)
-            {
-                playerIn.setActiveHand(handIn);
-                return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
-            }
+            playerIn.setActiveHand(handIn);
+            return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
         }
         return new ActionResult<>(EnumActionResult.FAIL, itemStack);
     }
@@ -69,33 +68,27 @@ public class RecallPotion extends ItemFood
     @Override @Deprecated
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
     {
-        if (entityLiving instanceof EntityPlayer)
+        if (entityLiving instanceof EntityPlayer && !worldIn.isRemote)
         {
-            EntityPlayer entityplayer = (EntityPlayer)entityLiving;
-            worldIn.playSound(null, entityplayer.posX, entityplayer.posY,
-                    entityplayer.posZ, SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.PLAYERS,
-                    0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F
-            );
-
-            if(!worldIn.isRemote)
+            EntityPlayer entityplayer = (EntityPlayer) entityLiving;
+            @Nullable BlockPos bedLoc = getBedLocation(entityplayer);
+            if (bedLoc != null)
             {
-                @Nullable BlockPos bedLoc = getBedLocation(entityplayer);
-                if(bedLoc != null)
-                {
-                    final IBlockState bedBlock = worldIn.getBlockState(bedLoc);
-                    if(bedBlock.getBlock().isBed(bedBlock, worldIn, bedLoc, null))
+                final IBlockState bedBlockState = worldIn.getBlockState(bedLoc);
+                final Block bedBlock = bedBlockState.getBlock();
+                if(bedBlock.isBed(bedBlockState, worldIn, bedLoc, null)) {
+                    final EnumFacing rotation = bedBlock.getBedDirection(bedBlockState, worldIn, bedLoc);
+                    if (TpUtil.bedTeleport(entityLiving, bedLoc.getX(), bedLoc.getY(), bedLoc.getZ(), rotation))
                     {
-                        final EnumFacing rotation = bedBlock.getBlock().getBedDirection(bedBlock, worldIn, bedLoc);
-                        if(TpUtil.bedTeleport(entityLiving, bedLoc.getX(), bedLoc.getY(), bedLoc.getZ(), rotation))
-                        {
-                            return super.onItemUseFinish(stack, worldIn, entityLiving);
-                        }
+                        SoundUtil.playSoundAtPlayer(worldIn, entityplayer,
+                                SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.PLAYERS);
+                        return super.onItemUseFinish(stack, worldIn, entityLiving);
                     }
                 }
-                entityplayer.sendMessage(new TextComponentString(I18n.translateToLocalFormatted("item.recall_potion.error")));
             }
+            entityplayer.sendMessage(new TextComponentString(I18n.translateToLocalFormatted("item.recall_potion.error")));
         }
-        return super.onItemUseFinish(stack, worldIn, entityLiving);
+        return stack;
     }
 
     @Override @Deprecated
