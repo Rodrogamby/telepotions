@@ -1,6 +1,7 @@
 package com.califralia.telepotion.handlers;
 
 import com.califralia.telepotion.items.RecallPotion;
+import com.califralia.telepotion.items.TeleportationPotion;
 import com.califralia.telepotion.items.WormholePotion;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -19,13 +20,15 @@ public class ObjectRegistry
 
     private static RecallPotion recallPotion;
     private static WormholePotion wormholePotion;
+    private static TeleportationPotion teleportationPotion;
 
     @SubscribeEvent
     public static void onRegisterItems(RegistryEvent.Register<Item> event)
     {
         event.getRegistry().registerAll(
                 recallPotion = new RecallPotion("recall_potion"),
-                wormholePotion = new WormholePotion("wormhole_potion")
+                wormholePotion = new WormholePotion("wormhole_potion"),
+                teleportationPotion = new TeleportationPotion("teleportation_potion")
         );
     }
 
@@ -34,6 +37,7 @@ public class ObjectRegistry
     {
         registerModel(recallPotion);
         registerModel(wormholePotion);
+        registerModel(teleportationPotion);
     }
 
     @SideOnly(Side.CLIENT)
