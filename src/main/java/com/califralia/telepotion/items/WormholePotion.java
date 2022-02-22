@@ -1,6 +1,7 @@
 package com.califralia.telepotion.items;
 
 import com.califralia.telepotion.Telepotion;
+import com.califralia.telepotion.util.SoundUtil;
 import com.califralia.telepotion.util.TpUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,6 +19,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -75,38 +78,30 @@ public class WormholePotion extends ItemFood
     @Override @Deprecated
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
     {
-        if (entityLiving instanceof EntityPlayerMP)
+        if (entityLiving instanceof EntityPlayerMP && !worldIn.isRemote)
         {
             EntityPlayerMP entityPlayer = (EntityPlayerMP)entityLiving;
-            worldIn.playSound(null, entityPlayer.posX, entityPlayer.posY,
-                    entityPlayer.posZ, SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.PLAYERS,
-                    0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F
-            );
-
-            if(!worldIn.isRemote)
+            final String targetName = stack.getDisplayName();
+            @Nullable EntityPlayer target = worldIn.getPlayerEntityByName(targetName);
+            if(target != null && entityLiving.world.equals(target.world))
             {
-                String targetName = stack.getDisplayName();
-                EntityPlayer target = worldIn.getPlayerEntityByName(targetName);
-                if(target != null && entityLiving.world.equals(target.world))
-                {
-                    TpUtil.teleport(entityLiving, target.posX, target.posY, target.posZ);
-                    entityPlayer.sendMessage(
-                            new TextComponentString("You've been teleported to " + targetName)
-                    );
-                }
-                else
-                {
-                    entityLiving.sendMessage(
-                            new TextComponentString(I18n.translateToLocal("item.wormhole_potion.error"))
-                    );
-                    return stack;
-                }
+                TpUtil.teleport(entityLiving, target.posX, target.posY, target.posZ);
+                SoundUtil.playSoundAtPlayer(worldIn, entityPlayer,
+                        SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.PLAYERS);
+                entityPlayer.sendMessage(new TextComponentString("You've been teleported to " + targetName));
+            }
+            else
+            {
+                entityLiving.sendMessage(
+                        new TextComponentString(I18n.translateToLocal("item.wormhole_potion.error"))
+                );
+                return stack;
             }
         }
         return super.onItemUseFinish(stack, worldIn, entityLiving);
     }
 
-    @Override
+    @Override @SideOnly(Side.CLIENT)
     public boolean hasEffect(ItemStack item)
     {
         return item.hasDisplayName();
