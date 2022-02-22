@@ -1,6 +1,7 @@
 package com.califralia.telepotion;
 
 import com.califralia.telepotion.items.RecallPotion;
+import com.califralia.telepotion.items.TeleportationPotion;
 import com.califralia.telepotion.items.WormholePotion;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -66,6 +67,7 @@ public class Telepotion
     {
           public static final RecallPotion recallPotion = null;
           public static final WormholePotion wormholePotion = null;
+          public static final TeleportationPotion teleportationPotion = null;
     }
 
 }
