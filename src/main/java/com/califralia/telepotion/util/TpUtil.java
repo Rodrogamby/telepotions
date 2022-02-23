@@ -3,6 +3,10 @@ package com.califralia.telepotion.util;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
 public class TpUtil
 {
@@ -10,7 +14,6 @@ public class TpUtil
     public static void teleport(EntityLivingBase entity, double x, double y, double z)
     {
         entity.dismountRidingEntity();
-
         if (entity instanceof EntityPlayerMP)
         {
             ((EntityPlayerMP)entity).connection.setPlayerLocation(x, y, z, entity.rotationYaw, entity.rotationPitch);
@@ -21,19 +24,43 @@ public class TpUtil
         }
     }
 
-    public static boolean bedTeleport(EntityLivingBase entity, double x, double y, double z, EnumFacing bedRotation)
+    public static boolean safeVerticalTp(EntityLivingBase entity, BlockPos tpPos) {
+        if (entity.attemptTeleport(tpPos.getX()+.5F, tpPos.getY(), tpPos.getZ()+.5F))
+        {
+            return true;
+        }
+        else
+        {
+            World world = entity.getEntityWorld();
+            final Vec3d pos = new Vec3d(tpPos.getX(), world.getActualHeight(), tpPos.getZ());
+            final RayTraceResult rayTraceResult = world.rayTraceBlocks(
+                    pos,
+                    pos.subtract(0, world.getActualHeight(), 0),
+                    false,
+                    true,
+                    false);
+
+            if(rayTraceResult != null)
+            {
+                final BlockPos topBlock = rayTraceResult.getBlockPos();
+                return entity.attemptTeleport(topBlock.getX()+.5F, topBlock.getY()+1, topBlock.getZ()+.5F);
+            }
+        }
+        return false;
+    }
+
+    public static boolean tryBedTeleport(EntityLivingBase entity, double x, double y, double z, EnumFacing bedRotation)
     {
         switch (bedRotation)
         {
-            //Facing north
             case NORTH: return calcBedAndTp(entity, x, y, z, 1, 2, 3,1.5F, -.5F);
-            //Facing east
+
             case EAST: return calcBedAndTp(entity, x, y, z, -1, 3, 2,-1.5F, 1.5F);
-            //Facing south
+
             case SOUTH: return calcBedAndTp(entity, x, y, z, -1, 2, 3,-.5F, 1.5F);
-            //Facing west
+
             case WEST: return calcBedAndTp(entity, x, y, z, 1, 3, 2,2.5F, -.5F);
-            //
+
             default: return false;
         }
     }

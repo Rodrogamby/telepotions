@@ -86,8 +86,11 @@ public class WormholePotion extends ItemFood
             if(target != null && entityLiving.world.equals(target.world))
             {
                 TpUtil.teleport(entityLiving, target.posX, target.posY, target.posZ);
-                SoundUtil.playSoundAtPlayer(worldIn, entityPlayer,
-                        SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.PLAYERS);
+                SoundUtil.playSoundAtPlayer(
+                        worldIn,
+                        entityPlayer,
+                        SoundEvents.BLOCK_END_PORTAL_SPAWN,
+                        SoundCategory.PLAYERS);
                 entityPlayer.sendMessage(new TextComponentString("You've been teleported to " + targetName));
             }
             else

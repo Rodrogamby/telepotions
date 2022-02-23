@@ -3,8 +3,6 @@ package com.califralia.telepotion.items;
 import com.califralia.telepotion.Telepotion;
 import com.califralia.telepotion.util.SoundUtil;
 import com.califralia.telepotion.util.TpUtil;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,18 +11,20 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class RecallPotion extends ItemFood
+public class TeleportationPotion extends ItemFood
 {
-    public RecallPotion(String name)
+    public TeleportationPotion(String name)
     {
         super(0, 0, false);
         this.setRegistryName(Telepotion.MOD_ID, name);
@@ -56,8 +56,7 @@ public class RecallPotion extends ItemFood
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
         ItemStack itemStack = playerIn.getHeldItem(handIn);
-        @Nullable BlockPos bedLoc = getBedLocation(playerIn);
-        if(!worldIn.isRemote && bedLoc != null)
+        if(playerIn.dimension == 0)
         {
             playerIn.setActiveHand(handIn);
             return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
@@ -65,44 +64,31 @@ public class RecallPotion extends ItemFood
         return new ActionResult<>(EnumActionResult.FAIL, itemStack);
     }
 
-    @Override @Deprecated
+    @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
     {
-        if (entityLiving instanceof EntityPlayer && !worldIn.isRemote)
+        if(entityLiving instanceof EntityPlayer && !worldIn.isRemote)
         {
-            EntityPlayer entityplayer = (EntityPlayer) entityLiving;
-            @Nullable BlockPos bedLoc = getBedLocation(entityplayer);
-            if (bedLoc != null)
+            EntityPlayer entityPlayer = (EntityPlayer)entityLiving;
+            BlockPos spawnPoint = worldIn.getSpawnPoint();
+            if(TpUtil.safeVerticalTp(entityLiving, spawnPoint))
             {
-                final IBlockState bedBlockState = worldIn.getBlockState(bedLoc);
-                final Block bedBlock = bedBlockState.getBlock();
-                if(bedBlock.isBed(bedBlockState, worldIn, bedLoc, null)) {
-                    final EnumFacing rotation = bedBlock.getBedDirection(bedBlockState, worldIn, bedLoc);
-                    if (TpUtil.tryBedTeleport(entityLiving, bedLoc.getX(), bedLoc.getY(), bedLoc.getZ(), rotation))
-                    {
-                        SoundUtil.playSoundAtPlayer(
-                                worldIn,
-                                entityplayer,
-                                SoundEvents.BLOCK_END_PORTAL_SPAWN,
-                                SoundCategory.PLAYERS);
-                        return super.onItemUseFinish(stack, worldIn, entityLiving);
-                    }
-                }
+                SoundUtil.playSoundAtPlayer(
+                        worldIn, entityPlayer,
+                        SoundEvents.BLOCK_END_PORTAL_SPAWN,
+                        SoundCategory.PLAYERS);
             }
-            entityplayer.sendMessage(new TextComponentString(I18n.translateToLocalFormatted("item.recall_potion.error")));
+            else
+            {
+                return stack;
+            }
         }
-        return stack;
+        return super.onItemUseFinish(stack, worldIn, entityLiving);
     }
 
     @Override @Deprecated
     public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag advanced)
     {
-        tooltip.add("\u00A75" + I18n.translateToLocal("item.recall_potion.lore"));
-    }
-
-    private static BlockPos getBedLocation(EntityPlayer player)
-    {
-        final int dim = player.dimension;
-        return player.getBedLocation(dim);
+        tooltip.add("\u00A75" + I18n.translateToLocal("item.teleportation_potion.lore"));
     }
 }
