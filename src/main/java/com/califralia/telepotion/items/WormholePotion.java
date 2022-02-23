@@ -61,7 +61,7 @@ public class WormholePotion extends ItemFood
         ItemStack itemStack = playerIn.getHeldItem(handIn);
         if(!worldIn.isRemote)
         {
-            if(itemStack.hasDisplayName())
+            if(itemStack.hasDisplayName() && !itemStack.getDisplayName().equals(playerIn.getDisplayNameString()))
             {
                 String displayName = itemStack.getDisplayName();
                 EntityPlayer target = worldIn.getPlayerEntityByName(displayName);
