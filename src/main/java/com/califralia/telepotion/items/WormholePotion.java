@@ -16,7 +16,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -91,13 +91,10 @@ public class WormholePotion extends ItemFood
                         entityPlayer,
                         SoundEvents.BLOCK_END_PORTAL_SPAWN,
                         SoundCategory.PLAYERS);
-                entityPlayer.sendMessage(new TextComponentString("You've been teleported to " + targetName));
             }
             else
             {
-                entityLiving.sendMessage(
-                        new TextComponentString(I18n.translateToLocal("item.wormhole_potion.error"))
-                );
+                entityLiving.sendMessage(new TextComponentTranslation("item.wormhole_potion.error"));
                 return stack;
             }
         }
@@ -110,7 +107,7 @@ public class WormholePotion extends ItemFood
         return item.hasDisplayName();
     }
 
-    @Override @Deprecated
+    @Override @Deprecated @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag advanced)
     {
         tooltip.add("\u00A75" + I18n.translateToLocal("item.wormhole_potion.lore"));

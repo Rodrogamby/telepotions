@@ -15,9 +15,11 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -89,12 +91,12 @@ public class RecallPotion extends ItemFood
                     }
                 }
             }
-            entityplayer.sendMessage(new TextComponentString(I18n.translateToLocalFormatted("item.recall_potion.error")));
+            entityplayer.sendMessage(new TextComponentTranslation("tile.bed.notValid"));
         }
         return stack;
     }
 
-    @Override @Deprecated
+    @Override @Deprecated @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag advanced)
     {
         tooltip.add("\u00A75" + I18n.translateToLocal("item.recall_potion.lore"));

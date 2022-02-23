@@ -16,8 +16,11 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -77,16 +80,17 @@ public class TeleportationPotion extends ItemFood
                         worldIn, entityPlayer,
                         SoundEvents.BLOCK_END_PORTAL_SPAWN,
                         SoundCategory.PLAYERS);
+                return super.onItemUseFinish(stack, worldIn, entityLiving);
             }
             else
             {
-                return stack;
+                entityPlayer.sendMessage(new TextComponentTranslation("item.teleportation_potion.error"));
             }
         }
-        return super.onItemUseFinish(stack, worldIn, entityLiving);
+        return stack;
     }
 
-    @Override @Deprecated
+    @Override @Deprecated @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag advanced)
     {
         tooltip.add("\u00A75" + I18n.translateToLocal("item.teleportation_potion.lore"));
