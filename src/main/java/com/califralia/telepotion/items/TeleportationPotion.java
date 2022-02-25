@@ -1,12 +1,13 @@
 package com.califralia.telepotion.items;
 
 import com.califralia.telepotion.Telepotion;
-import com.califralia.telepotion.util.SoundUtil;
+import com.califralia.telepotion.util.EffectUtil;
 import com.califralia.telepotion.util.TpUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
@@ -76,11 +77,12 @@ public class TeleportationPotion extends ItemFood
             BlockPos spawnPoint = worldIn.getSpawnPoint();
             if(TpUtil.safeVerticalTp(entityLiving, spawnPoint))
             {
-                SoundUtil.playSoundAtPlayer(
+                EffectUtil.playSoundAtPlayer(
                         worldIn, entityPlayer,
                         SoundEvents.BLOCK_END_PORTAL_SPAWN,
                         SoundCategory.PLAYERS);
-                return super.onItemUseFinish(stack, worldIn, entityLiving);
+                super.onItemUseFinish(stack, worldIn, entityLiving);
+                return new ItemStack(Items.GLASS_BOTTLE, 1);
             }
             else
             {
