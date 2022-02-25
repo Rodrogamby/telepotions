@@ -97,4 +97,10 @@ public class TeleportationPotion extends ItemFood
     {
         tooltip.add("\u00A75" + I18n.translateToLocal("item.teleportation_potion.lore"));
     }
+
+    @Override @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack stack)
+    {
+        return true;
+    }
 }

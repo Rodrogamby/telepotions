@@ -83,7 +83,6 @@ public class RecallPotion extends ItemFood
                     final EnumFacing rotation = bedBlock.getBedDirection(bedBlockState, worldIn, bedLoc);
                     if (TpUtil.tryBedTeleport(entityLiving, bedLoc.getX(), bedLoc.getY(), bedLoc.getZ(), rotation))
                     {
-
                         EffectUtil.playSoundAtPlayer(
                                 worldIn,
                                 entityplayer,
@@ -103,6 +102,12 @@ public class RecallPotion extends ItemFood
     public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag advanced)
     {
         tooltip.add("\u00A75" + I18n.translateToLocal("item.recall_potion.lore"));
+    }
+
+    @Override @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack stack)
+    {
+        return true;
     }
 
     private static BlockPos getBedLocation(EntityPlayer player)
