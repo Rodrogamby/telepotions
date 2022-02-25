@@ -1,8 +1,8 @@
-package com.califralia.telepotion;
+package com.califralia.telepotions;
 
-import com.califralia.telepotion.items.RecallPotion;
-import com.califralia.telepotion.items.TeleportationPotion;
-import com.califralia.telepotion.items.WormholePotion;
+import com.califralia.telepotions.items.RecallPotion;
+import com.califralia.telepotions.items.TeleportationPotion;
+import com.califralia.telepotions.items.WormholePotion;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -12,19 +12,19 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 
 @Mod(
-        modid = Telepotion.MOD_ID,
-        name = Telepotion.MOD_NAME,
-        version = Telepotion.VERSION
+        modid = Telepotions.MOD_ID,
+        name = Telepotions.MOD_NAME,
+        version = Telepotions.VERSION
 )
-public class Telepotion
+public class Telepotions
 {
 
-    public static final String MOD_ID = "telepotion";
-    public static final String MOD_NAME = "Telepotion";
+    public static final String MOD_ID = "telepotions";
+    public static final String MOD_NAME = "Telepotions";
     public static final String VERSION = "1.0-SNAPSHOT";
 
     @Mod.Instance(MOD_ID)
-    public static Telepotion INSTANCE;
+    public static Telepotions INSTANCE;
 
     public static Logger logger;
     /**

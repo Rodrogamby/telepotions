@@ -1,8 +1,8 @@
-package com.califralia.telepotion.handlers;
+package com.califralia.telepotions.handlers;
 
-import com.califralia.telepotion.items.RecallPotion;
-import com.califralia.telepotion.items.TeleportationPotion;
-import com.califralia.telepotion.items.WormholePotion;
+import com.califralia.telepotions.items.RecallPotion;
+import com.califralia.telepotions.items.TeleportationPotion;
+import com.califralia.telepotions.items.WormholePotion;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;

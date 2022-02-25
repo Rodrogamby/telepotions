@@ -1,8 +1,8 @@
 [
   {
-    "modid": "telepotion",
-    "name": "Telepotion",
-    "description": "Teleportation potions, as the creative name says.",
+    "modid": "telepotions",
+    "name": "Telepotions",
+    "description": "Teleportation potions, as the original mod name implies.",
     "version": "${version}",
     "mcversion": "${mcversion}",
     "url": "",

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "telepotion:items/teleportation_potion"
+        "layer0": "telepotions:items/recall_potion"
     }
 }

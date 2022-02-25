@@ -1,4 +1,4 @@
-package com.califralia.telepotion.util;
+package com.califralia.telepotions.util;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.SoundEvent;

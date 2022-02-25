@@ -1,20 +1,20 @@
 {
   "result": {
-    "item": "telepotion:teleportation_potion"
+    "item": "telepotions:wormhole_potion"
   },
   "pattern": [
     " W ",
-    " P ",
+    "DPD",
     "EBE"
   ],
   "type": "minecraft:crafting_shaped",
   "key": {
     "W": {
       "item": "minecraft:fish",
-      "data": 2
+      "data": 3
     },
     "P": {
-      "item": "minecraft:ender_pearl",
+      "item": "minecraft:ender_eye",
       "data": 0
     },
     "B": {
@@ -28,6 +28,10 @@
     },
     "E": {
       "item": "minecraft:emerald",
+      "data": 0
+    },
+    "D": {
+      "item": "minecraft:diamond",
       "data": 0
     }
   }

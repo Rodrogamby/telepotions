@@ -1,8 +1,8 @@
-package com.califralia.telepotion.items;
+package com.califralia.telepotions.items;
 
-import com.califralia.telepotion.Telepotion;
-import com.califralia.telepotion.util.EffectUtil;
-import com.califralia.telepotion.util.TpUtil;
+import com.califralia.telepotions.Telepotions;
+import com.califralia.telepotions.util.EffectUtil;
+import com.califralia.telepotions.util.TpUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -31,7 +31,7 @@ public class WormholePotion extends ItemFood
     public WormholePotion(String name)
     {
         super(0, 0, false);
-        this.setRegistryName(Telepotion.MOD_ID, name);
+        this.setRegistryName(Telepotions.MOD_ID, name);
         this.setTranslationKey(name);
         this.setMaxStackSize(1);
         this.setAlwaysEdible();

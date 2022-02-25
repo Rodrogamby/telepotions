@@ -1,20 +1,24 @@
 {
   "result": {
-    "item": "telepotion:wormhole_potion"
+    "item": "telepotions:recall_potion"
   },
   "pattern": [
     " W ",
-    "DPD",
+    "XPX",
     "EBE"
   ],
   "type": "minecraft:crafting_shaped",
   "key": {
     "W": {
       "item": "minecraft:fish",
-      "data": 3
+      "data": 2
+    },
+    "X": {
+      "item": "minecraft:golden_apple",
+      "data": 0
     },
     "P": {
-      "item": "minecraft:ender_eye",
+      "item": "minecraft:ender_pearl",
       "data": 0
     },
     "B": {
@@ -28,10 +32,6 @@
     },
     "E": {
       "item": "minecraft:emerald",
-      "data": 0
-    },
-    "D": {
-      "item": "minecraft:diamond",
       "data": 0
     }
   }

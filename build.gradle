@@ -15,7 +15,7 @@ group = 'com.califralia'
 version = '1.0-SNAPSHOT'
 
 java {
-    archivesBaseName = 'Telepotion'
+    archivesBaseName = 'Telepotions'
     toolchain.languageVersion = JavaLanguageVersion.of(8)
 }
 
@@ -54,7 +54,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                telepotion {
+                telepotions {
                     source sourceSets.main
                 }
             }
@@ -76,7 +76,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                telepotion {
+                telepotions {
                     source sourceSets.main
                 }
             }
@@ -120,7 +120,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "telepotion",
+                "Specification-Title"     : "telepotions",
                 "Specification-Vendor"    : "Rodro",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,

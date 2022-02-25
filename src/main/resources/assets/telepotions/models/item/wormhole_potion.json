@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "telepotion:items/wormhole_potion"
+    "layer0": "telepotions:items/wormhole_potion"
   }
 }
