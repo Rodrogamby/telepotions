@@ -21,7 +21,7 @@ public class Telepotions
 
     public static final String MOD_ID = "telepotions";
     public static final String MOD_NAME = "Telepotions";
-    public static final String VERSION = "1.0-SNAPSHOT";
+    public static final String VERSION = "1.0-BETA-2";
 
     @Mod.Instance(MOD_ID)
     public static Telepotions INSTANCE;
