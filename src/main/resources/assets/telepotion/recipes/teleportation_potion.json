@@ -1,0 +1,34 @@
+{
+  "result": {
+    "item": "telepotion:teleportation_potion"
+  },
+  "pattern": [
+    " W ",
+    " P ",
+    "EBE"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "W": {
+      "item": "minecraft:fish",
+      "data": 2
+    },
+    "P": {
+      "item": "minecraft:ender_pearl",
+      "data": 0
+    },
+    "B": {
+      "type": "minecraft:item_nbt",
+      "item": "minecraft:potion",
+      "data": 0,
+      "nbt":
+      {
+        "Potion": "minecraft:mundane"
+      }
+    },
+    "E": {
+      "item": "minecraft:emerald",
+      "data": 0
+    }
+  }
+}

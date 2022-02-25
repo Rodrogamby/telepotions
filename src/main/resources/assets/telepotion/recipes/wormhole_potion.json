@@ -1,0 +1,38 @@
+{
+  "result": {
+    "item": "telepotion:wormhole_potion"
+  },
+  "pattern": [
+    " W ",
+    "DPD",
+    "EBE"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "W": {
+      "item": "minecraft:fish",
+      "data": 3
+    },
+    "P": {
+      "item": "minecraft:ender_eye",
+      "data": 0
+    },
+    "B": {
+      "type": "minecraft:item_nbt",
+      "item": "minecraft:potion",
+      "data": 0,
+      "nbt":
+      {
+        "Potion": "minecraft:mundane"
+      }
+    },
+    "E": {
+      "item": "minecraft:emerald",
+      "data": 0
+    },
+    "D": {
+      "item": "minecraft:diamond",
+      "data": 0
+    }
+  }
+}
