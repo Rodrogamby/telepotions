@@ -32,6 +32,11 @@ public class TpUtil
         else
         {
             World world = entity.getEntityWorld();
+            if(entity.attemptTeleport(tpPos.getX()+.5F, world.getActualHeight(), tpPos.getZ()+.5F))
+            {
+                return true;
+            }
+            /*
             final Vec3d pos = new Vec3d(tpPos.getX(), world.getActualHeight(), tpPos.getZ());
             final RayTraceResult rayTraceResult = world.rayTraceBlocks(
                     pos,
@@ -45,6 +50,7 @@ public class TpUtil
                 final BlockPos topBlock = rayTraceResult.getBlockPos();
                 return entity.attemptTeleport(topBlock.getX()+.5F, topBlock.getY()+1, topBlock.getZ()+.5F);
             }
+             */
         }
         return false;
     }
