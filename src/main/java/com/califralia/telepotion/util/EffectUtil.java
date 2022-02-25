@@ -5,7 +5,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
-public class SoundUtil
+public class EffectUtil
 {
     public static void playSoundAtPlayer(World world, EntityPlayer player, SoundEvent sound, SoundCategory category)
     {
