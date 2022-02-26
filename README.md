@@ -1,3 +1,5 @@
+<img width="470" alt="banner" src="https://user-images.githubusercontent.com/20403142/155824029-32517510-16f2-43e8-af88-9ab11f583529.png">
+
 # Telepotions
 MC-Forge Mod: Adds teleportation potions to the game, providing a survival-progression friendly way of teleporting through the world.
 
