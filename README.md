@@ -11,7 +11,9 @@ MC-Forge Mod: Adds teleportation potions to the game, providing a survival-progr
 Teleports to you to your current dimension's bed (won't do anything if you don't have one).
 
 ### Wormhole Potion
-![Wormhole Potion Recipe](https://user-images.githubusercontent.com/20403142/155658670-8bc1b4bf-5d38-4749-bcd2-c781687af1f3.png)
+![Wormhole Potion Recipe](https://user-images.githubusercontent.com/20403142/155825154-5c1aa07d-934c-436c-bb40-c87dc3732e32.png)
+
+
 
 Teleports you to another player. You must rename it to the target player's nickname before using. (Case sensitive).
 Only works if the target player is online and in the same dimension.
