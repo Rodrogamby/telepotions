@@ -8,7 +8,7 @@ MC-Forge Mod: Adds teleportation potions to the game, providing a survival-progr
 ### Recall Potion
 ![Recall Potion Recipe](https://user-images.githubusercontent.com/20403142/155658519-dedb3db4-e8b7-4068-9260-62b17cdfabdb.png)
 
-Teleports to you to your current dimension's bed (won't do anything if you don't have one).
+Teleports to you to your current dimension's bed or charged respawn anchor (consumes a charge; won't do anything if you don't have one).
 
 ### Wormhole Potion
 ![Wormhole Potion Recipe](https://user-images.githubusercontent.com/20403142/155825154-5c1aa07d-934c-436c-bb40-c87dc3732e32.png)
