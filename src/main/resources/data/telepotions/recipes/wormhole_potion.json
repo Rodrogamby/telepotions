@@ -1,0 +1,32 @@
+{
+  "result": {
+    "item": "telepotions:wormhole_potion"
+  },
+  "pattern": [
+    " W ",
+    "DPD",
+    "EBE"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "group": "food",
+  "key": {
+    "W": {
+      "item": "minecraft:pufferfish"
+    },
+    "P": {
+      "item": "minecraft:ender_eye"
+    },
+    "B": {
+      "type": "forge:nbt",
+      "item": "minecraft:potion",
+      "count": 1,
+      "nbt": "{Potion:\"minecraft:awkward\"}"
+    },
+    "E": {
+      "item": "minecraft:emerald"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  }
+}

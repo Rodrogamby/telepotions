@@ -1,0 +1,29 @@
+{
+  "result": {
+    "item": "telepotions:teleportation_potion"
+  },
+  "pattern": [
+    " W ",
+    " P ",
+    "EBE"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "group": "food",
+  "key": {
+    "W": {
+      "item": "minecraft:tropical_fish"
+    },
+    "P": {
+      "item": "minecraft:ender_pearl"
+    },
+    "B": {
+      "type": "forge:nbt",
+      "item": "minecraft:potion",
+      "count": 1,
+      "nbt": "{Potion:\"minecraft:awkward\"}"
+    },
+    "E": {
+      "item": "minecraft:emerald"
+    }
+  }
+}

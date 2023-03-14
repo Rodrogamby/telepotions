@@ -1,0 +1,32 @@
+{
+  "result": {
+    "item": "telepotions:recall_potion"
+  },
+  "pattern": [
+    " W ",
+    "XPX",
+    "EBE"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "group": "food",
+  "key": {
+    "W": {
+      "item": "minecraft:tropical_fish"
+    },
+    "X": {
+      "item": "minecraft:golden_apple"
+    },
+    "P": {
+      "item": "minecraft:ender_pearl"
+    },
+    "B": {
+      "type": "forge:nbt",
+      "item": "minecraft:potion",
+      "count": 1,
+      "nbt": "{Potion:\"minecraft:awkward\"}"
+    },
+    "E": {
+      "item": "minecraft:emerald"
+    }
+  }
+}

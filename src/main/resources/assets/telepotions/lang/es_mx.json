@@ -1,0 +1,12 @@
+{
+    "item.telepotions.recall_potion": "Poción de retirada",
+    "item.telepotions.recall_potion.lore": "Te regresa a la ubicación de tu hogar",
+
+    "item.telepotions.wormhole_potion": "Poción de agujero de gusano",
+    "item.telepotions.wormhole_potion.lore": "Te teletransporta a otro jugador. Renómbrala con el nickname del objetivo.",
+    "item.telepotions.wormhole_potion.error": "El jugador objetivo no se encuentra en este mundo",
+
+    "item.telepotions.teleportation_potion": "Poción de teletransporte",
+    "item.telepotions.teleportation_potion.lore": "Te lleva al punto de aparición del mundo",
+    "item.telepotions.teleportation_potion.error": "Punto de aparición inseguro"
+}

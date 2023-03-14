@@ -1,0 +1,12 @@
+{
+    "item.telepotions.recall_potion": "Recall Potion",
+    "item.telepotions.recall_potion.lore": "Returns you to your home location",
+
+    "item.telepotions.wormhole_potion": "Wormhole Potion",
+    "item.telepotions.wormhole_potion.lore": "Teleports you to another player. Rename it to target's name.",
+    "item.telepotions.wormhole_potion.error": "The target player could not be found on this world",
+
+    "item.telepotions.teleportation_potion": "Teleportation Potion",
+    "item.telepotions.teleportation_potion.lore": "Teleports you to the world spawn",
+    "item.telepotions.teleportation_potion.error": "Unsafe spawn location"
+}
