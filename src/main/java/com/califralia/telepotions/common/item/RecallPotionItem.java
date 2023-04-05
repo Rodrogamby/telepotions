@@ -1,5 +1,6 @@
-package com.califrlia.telepotions.common.item;
+package com.califralia.telepotions.common.item;
 
+import com.califralia.telepotions.util.EffectUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,8 +22,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
-
-import static com.califrlia.telepotions.util.EffectUtil.playSoundAtPlayer;
 
 public class RecallPotionItem extends Item
 {
@@ -85,7 +84,7 @@ public class RecallPotionItem extends Item
                         serverPlayer.connection.send(new SPlaySoundEffectPacket(SoundEvents.RESPAWN_ANCHOR_DEPLETE, SoundCategory.BLOCKS, respawnPos.getX(), respawnPos.getY(), respawnPos.getZ(), 1.0F, 1.0F));
                     }
                     serverPlayer.awardStat(Stats.ITEM_USED.get(this));
-                    playSoundAtPlayer(world, entity);
+                    EffectUtil.playSoundAtPlayer(world, entity);
                     return new ItemStack(Items.GLASS_BOTTLE,1);
                 }
                 serverPlayer.sendMessage(new TranslationTextComponent("block.minecraft.spawn.not_valid"),player.getUUID());

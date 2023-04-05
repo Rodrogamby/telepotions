@@ -1,4 +1,4 @@
-package com.califrlia.telepotions.util;
+package com.califralia.telepotions.util;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.SoundCategory;

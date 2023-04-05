@@ -1,8 +1,8 @@
-package com.califrlia.telepotions;
+package com.califralia.telepotions;
 
-import com.califrlia.telepotions.common.item.RecallPotionItem;
-import com.califrlia.telepotions.common.item.TeleportationPotionItem;
-import com.califrlia.telepotions.common.item.WormholePotionItem;
+import com.califralia.telepotions.common.item.RecallPotionItem;
+import com.califralia.telepotions.common.item.TeleportationPotionItem;
+import com.califralia.telepotions.common.item.WormholePotionItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;

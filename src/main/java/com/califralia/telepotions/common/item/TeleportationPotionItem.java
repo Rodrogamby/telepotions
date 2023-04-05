@@ -1,5 +1,6 @@
-package com.califrlia.telepotions.common.item;
+package com.califralia.telepotions.common.item;
 
+import com.califralia.telepotions.util.EffectUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,8 +17,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
-
-import static com.califrlia.telepotions.util.EffectUtil.playSoundAtPlayer;
 
 public class TeleportationPotionItem extends Item
 {
@@ -51,7 +50,7 @@ public class TeleportationPotionItem extends Item
             if (entity.randomTeleport(levelData.getXSpawn(), levelData.getYSpawn(), levelData.getZSpawn(), false))
             {
                 world.getPlayerByUUID(entity.getUUID()).awardStat(Stats.ITEM_USED.get(this));
-                playSoundAtPlayer(world, entity);
+                EffectUtil.playSoundAtPlayer(world, entity);
                 return new ItemStack(Items.GLASS_BOTTLE, 1);
             }
             entity.sendMessage(new TranslationTextComponent("item.telepotions.teleportation_potion.error"),entity.getUUID());
