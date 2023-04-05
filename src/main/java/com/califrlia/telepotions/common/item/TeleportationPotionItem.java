@@ -3,7 +3,9 @@ package com.califrlia.telepotions.common.item;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
@@ -49,6 +51,7 @@ public class TeleportationPotionItem extends Item
         {
             if (entity.randomTeleport(levelData.getXSpawn(), levelData.getYSpawn(), levelData.getZSpawn(), false))
             {
+                world.getPlayerByUUID(entity.getUUID()).awardStat(Stats.ITEM_USED.get(this));
                 playSoundAtPlayer(world, entity);
                 return new ItemStack(Items.GLASS_BOTTLE, 1);
             }

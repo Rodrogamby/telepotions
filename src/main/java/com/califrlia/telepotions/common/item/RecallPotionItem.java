@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.network.play.server.SPlaySoundEffectPacket;
+import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -83,6 +84,7 @@ public class RecallPotionItem extends Item
                     {
                         serverPlayer.connection.send(new SPlaySoundEffectPacket(SoundEvents.RESPAWN_ANCHOR_DEPLETE, SoundCategory.BLOCKS, respawnPos.getX(), respawnPos.getY(), respawnPos.getZ(), 1.0F, 1.0F));
                     }
+                    serverPlayer.awardStat(Stats.ITEM_USED.get(this));
                     playSoundAtPlayer(world, entity);
                     return new ItemStack(Items.GLASS_BOTTLE,1);
                 }
