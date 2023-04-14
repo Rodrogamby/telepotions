@@ -1,0 +1,12 @@
+{
+    "item.recall_potion": "Potion de rappel",
+    "item.recall_potion.lore": "Vous téléporte à votre point de réapparition",
+
+    "item.wormhole_potion": "Potion de trou de ver",
+    "item.wormhole_potion.lore": "Vous téléporte à un autre joueur. Renommez-là avec le nom du joueur auquel vous souhaitez vous téléporter",
+    "item.wormhole_potion.error": "Le joueur ciblé n'a pas pu être trouvé dans ce monde",
+
+    "item.teleportation_potion": "Potion de téléportation",
+    "item.teleportation_potion.lore": "Vous téléporte au spawn du monde",
+    "item.teleportation_potion.error": "Spawn dangereux!"
+}
